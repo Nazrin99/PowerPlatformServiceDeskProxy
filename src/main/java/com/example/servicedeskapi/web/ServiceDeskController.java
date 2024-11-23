@@ -21,7 +21,7 @@ public class ServiceDeskController {
     @Autowired
     ServiceDeskService serviceDeskService;
 
-    @PostMapping("/requests")
+    @GetMapping("/requests")
     public ResponseEntity<Request> createRequest(@RequestBody com.example.servicedeskapi.payload.request.RequestBody request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(serviceDeskService.createRequest(request));
     }

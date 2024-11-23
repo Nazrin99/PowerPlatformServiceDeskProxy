@@ -22,7 +22,7 @@ public class ServiceDeskApiApplication {
 		SpringApplication app = new SpringApplication(ServiceDeskApiApplication.class);
 		app.addListeners(event -> {
 			if (event instanceof ApplicationStartingEvent) {
-				String programFilesPath = System.getenv("ProgramFiles");
+				String programFilesPath = "C:";
 				String basePath = programFilesPath + "\\powerplatform";
 				String trustStorePath = basePath + "\\mytruststore.jks";
 				String trustStorePassword = "secret";

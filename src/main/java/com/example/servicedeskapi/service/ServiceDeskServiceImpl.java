@@ -42,6 +42,10 @@ public class ServiceDeskServiceImpl implements ServiceDeskService{
     public Request createRequest(RequestBody requestBody) {
         HttpsURLConnection connection;
 
+        System.out.println(requestBody.getRequestDetails().getRequester().getName());
+        System.out.println(requestBody.getRequestDetails().getSubject());
+        System.out.println(requestBody.getRequestDetails().getDescription());
+
         try {
             connection = Connection.getConnection("/requests?input_data=" + jsonifyMinifyAndUrlEncode(requestBody), HttpMethod.POST, KeyType.AUTH_TOKEN);
 
