@@ -8,5 +8,5 @@ import org.springframework.stereotype.Component;
 public interface ServiceDeskService {
     Request getRequestByRequestId(Integer requestId);
 
-    Request createRequest(RequestBody requestBody);
+    Request createRequest(String subject, String description);
 }

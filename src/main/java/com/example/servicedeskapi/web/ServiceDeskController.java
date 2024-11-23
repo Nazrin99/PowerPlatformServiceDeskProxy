@@ -22,9 +22,12 @@ public class ServiceDeskController {
     ServiceDeskService serviceDeskService;
 
     @GetMapping("/requests")
-    public ResponseEntity<Request> createRequest(@RequestBody com.example.servicedeskapi.payload.request.RequestBody request) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(serviceDeskService.createRequest(request));
+    public ResponseEntity<Request> createRequest(
+            @RequestParam String subject,
+            @RequestParam String description) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(serviceDeskService.createRequest(subject, description));
     }
+
 
     @GetMapping("/requests/{requestId}")
     public ResponseEntity<Request> getRequestByRequestId(@PathVariable Integer requestId) {
