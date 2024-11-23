@@ -9,4 +9,6 @@ public interface ServiceDeskService {
     Request getRequestByRequestId(Integer requestId);
 
     Request createRequest(String subject, String description);
+
+    Request reassignRequest(Integer requestId, String technicianName);
 }

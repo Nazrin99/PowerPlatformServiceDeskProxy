@@ -3,7 +3,9 @@ package com.example.servicedeskapi.service;
 import com.example.servicedeskapi.connection.Connection;
 import com.example.servicedeskapi.connection.KeyType;
 import com.example.servicedeskapi.model.Request;
-import com.example.servicedeskapi.payload.request.RequestBody;
+import com.example.servicedeskapi.model.RequestDetails;
+import com.example.servicedeskapi.model.Requester;
+import com.example.servicedeskapi.payload.request.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
@@ -42,7 +44,31 @@ public class ServiceDeskServiceImpl implements ServiceDeskService{
     public Request createRequest(String subject, String description) {
         HttpsURLConnection connection;
 
+        // Create a new request body
+        RequestBody requestBody = new RequestBody();
+        // Create a new request details
+        RequestDetailsBody requestDetailsBody = new RequestDetailsBody();
+        requestDetailsBody.setSubject(subject);
+        requestDetailsBody.setDescription(description);
 
+        RequesterBody requesterBody = new RequesterBody();
+        requesterBody.setId("1825");
+        requesterBody.setName("Skrine Power Platform");
+
+        StatusBody statusBody = new StatusBody();
+        statusBody.setName("Open");
+
+        ResolutionBody resolutionBody = new ResolutionBody();
+        resolutionBody.setContent(null);
+
+        requestDetailsBody.setRequester(requesterBody);
+        requestDetailsBody.setStatus(statusBody);
+        requestDetailsBody.setResolution(resolutionBody);
+        requestDetailsBody.setImpactDetails(null);
+
+        requestBody.setRequestDetails(requestDetailsBody);
+
+        System.out.println(jsonifyMinifyAndUrlEncode(requestBody));
 
         try {
             connection = Connection.getConnection("/requests?input_data=" + jsonifyMinifyAndUrlEncode(requestBody), HttpMethod.POST, KeyType.AUTH_TOKEN);
@@ -70,5 +96,10 @@ public class ServiceDeskServiceImpl implements ServiceDeskService{
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public Request reassignRequest(Integer requestId, String technicianName) {
+        return null;
     }
 }
