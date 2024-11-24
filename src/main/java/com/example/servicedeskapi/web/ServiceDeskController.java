@@ -1,6 +1,7 @@
 package com.example.servicedeskapi.web;
 
 import com.example.servicedeskapi.model.Request;
+import com.example.servicedeskapi.payload.response.AssignRequestResponseBody;
 import com.example.servicedeskapi.service.ServiceDeskService;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,5 +33,15 @@ public class ServiceDeskController {
     @GetMapping("/requests/{requestId}")
     public ResponseEntity<Request> getRequestByRequestId(@PathVariable Integer requestId) {
         return ResponseEntity.ok(serviceDeskService.getRequestByRequestId(requestId));
+    }
+
+    @GetMapping("/requests/{requestId}/assign")
+    public ResponseEntity<AssignRequestResponseBody> assignRequest(@PathVariable Integer requestId, @RequestParam String technicianName) {
+        return ResponseEntity.ok(serviceDeskService.assignRequest(requestId, technicianName));
+    }
+
+    @GetMapping("/requests/{requestId}/close")
+    public ResponseEntity<AssignRequestResponseBody> closeRequest(@PathVariable Integer requestId, @RequestParam boolean requesterAckResolution, @RequestParam String requesterAckComments, @RequestParam String closureComments) {
+        return ResponseEntity.ok(serviceDeskService.closeRequest(requestId, requesterAckResolution, requesterAckComments, closureComments));
     }
 }
