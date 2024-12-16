@@ -24,7 +24,7 @@ public class ServiceDeskApiApplication {
 			if (event instanceof ApplicationStartingEvent) {
 				String programFilesPath = "C:";
 				String basePath = programFilesPath + "\\powerplatform";
-				String trustStorePath = basePath + "\\mytruststore.jks";
+				String trustStorePath = basePath + "\\proxytruststore.jks";
 				String trustStorePassword = "secret";
 				String certificatePath = basePath + "\\cert.crt";
 

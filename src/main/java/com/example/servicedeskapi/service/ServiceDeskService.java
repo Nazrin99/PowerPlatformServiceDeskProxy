@@ -2,6 +2,7 @@ package com.example.servicedeskapi.service;
 
 import com.example.servicedeskapi.model.Request;
 import com.example.servicedeskapi.payload.response.AssignRequestResponseBody;
+import com.example.servicedeskapi.payload.response.GetTechniciansResponseBody;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -13,4 +14,6 @@ public interface ServiceDeskService {
     AssignRequestResponseBody assignRequest(Integer requestId, String technicianName);
 
     AssignRequestResponseBody closeRequest(Integer requestId, boolean requesterAckResolution, String requesterAckComments, String closureComments);
+
+    GetTechniciansResponseBody getTechnicians();
 }
